@@ -7,10 +7,10 @@ from time import sleep
 from math import cos, sin
 red = (255, 0, 0)
 blue = (0, 0, 255)
-team = 0
+#team = 0
 
-#Changer vars here:
-playerSpeed = 2
+#Change vars here:
+playerSpeed = 4
 (width, height) = (500, 500)#The width anf height of playing window
 bg = (225, 150, 75)
 
@@ -62,7 +62,7 @@ class Daniel:
                 raise stateError('Daniel', 'State error')
 
 #Main loop:
-daniel = Daniel(team0, team1)
+daniel = Daniel(team1, team0)
 while True:
     daniel.update()
     g.updateScreen()

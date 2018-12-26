@@ -47,19 +47,21 @@ class Game:
 ##            self.playerPoses.append(player.id)
         for player in self.players:
             player.move()
-            val = collideCheck(player, self.players)
-            if val[0] == True:
+            self.val = collideCheck(player, self.players)
+            if self.val[0] == True:
                 #print("COLLISION")
                 for x in range(0, len(self.players)):
-                    if self.players[x] == val[1]:
+                    #print(self.val)
+                    print(x)
+                    if self.players[x] == self.val[1]:
                         offender = x
-                        print(x)
+                        #print(x)
                         self.die = checkDeath(player, self.players[x])
-                        print(self.die)
+                        #print(self.die)
                         if self.die[0] == True:
-                            print(self.die)
-                            #self.die.die()
-                            #self.players.pop(self.die)
+                            #print(self.die)
+                            self.die[1].die()
+                            self.players.remove(self.die[1])
                         else:
                             pass
             
@@ -117,24 +119,24 @@ def collideCheck(myPos, lst):
 
 def checkDeath(player1, player2):
     if player1.team == player2.team:
-        print("Same team")
+        #print("Same team")
         return False, False
     else:
-        print("Not same team")
+        #print("Not same team")
         #Create boundries:
-        print(player1.team == 0)
+        #print(player1.team == 0)
         if player1.team == 0:
-            print(player1.id.y>midline)
-            print(player1.id.y)
+            #print(player1.id.y>midline)
+            #print(player1.id.y)
             if player1.id.y>midline:#Player 1 below midline
-                print("Player1 dies")
+                #print("Player1 dies")
                 return True, player1
-            print(player2.team == 0)
+            #print(player2.team == 0)
         if player2.team == 0:
             if player2.id.x<midline:#Player 2 above midline
-                print("Player2 dies")
+                #print("Player2 dies")
                 return True, player2
-    print("Death checked.")
+    #print("Death checked.")
 
 print("Creating class object g for Game class...")
 ##g = Game(pygame, screen)
